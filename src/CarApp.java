@@ -10,8 +10,11 @@ public class CarApp {
         CarColor yellow = new CarColor("yellow", 255, 227,0);
         CarColor red = new CarColor("red",255, 4, 0);
 
-        Car carJJ = new Car("Peugeot", red, 0, jeanjean, 3);
-        Car carTT = new Car("VW", yellow, 0, tomtom, 10);
+        Car carJJ = new Car("Peugeot", red,  3);
+        Car carTT = new Car("VW", yellow, 10);
+
+        carJJ.setDriver(jeanjean);
+        carTT.setDriver(tomtom);
 
         Random random = new Random();
         carJJ.accelerate(random.nextInt(120));
@@ -37,5 +40,7 @@ public class CarApp {
         carTT.setPassengers(initialPassengers);
         carTT.addPassengers(addedPassengers);
         carTT.printPassengers();
+
+        carJJ.repaint(red);
     }
 }

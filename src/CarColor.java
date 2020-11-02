@@ -3,6 +3,7 @@ import java.util.Arrays;
 public class CarColor {
 
     private String name;
+
     private int[] rgb = new int[3];
 
     public CarColor(java.awt.Color color) {
@@ -29,17 +30,8 @@ public class CarColor {
         return name;
     }
 
-    public int getRed() {
-        return this.rgb[0];
+    public int[] getRgb() {
+        return rgb;
     }
-
-    public int getGreen() {
-        return this.rgb[1];
-    }
-
-    public int getBlue() {
-        return this.rgb[2];
-    }
-
 
 }

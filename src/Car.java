@@ -8,13 +8,11 @@ public class Car {
     private Person[] passengers;
 
 
-    public Car(String brand, CarColor color, int fuel, Person driver, int seats) {
+    public Car(String brand, CarColor color, int seats) {
 
         this.brand = brand;
         this.color = color;
         this.engine = new Engine();
-        this.engine.reFuel(fuel);
-        this.driver = driver;
         this.passengers = new Person[seats];
     }
 
@@ -30,18 +28,33 @@ public class Car {
                 '}';
     }
 
-    public void accelerate(int amount) {
+    public void setDriver(Person driver) {
+        this.driver = driver;
+    }
 
-        if (this.driver != null && this.engine.getFuel() != 0) {
-            this.speed += amount;
-            this.engine.burnFuel(amount);
+    public void accelerate(int acc) {
+
+        if (-acc > this.speed) {
+            acc = -this.speed;
+        }
+        // Say speed = 50. If i decelerate by 70 (acc = -70) -> reset deceleration on 50 (acc = -50)
+
+        if (this.driver != null && acc <= this.engine.getFuel()) {
+
+            this.speed += acc; // So it makes the car stop (speed = speed (50) + acc (-50) = 0)
+
+            if(acc > 0) {
+                this.engine.burnFuel(acc); // So only 50 are burnt
+            }
         }
     }
 
-    public int repaint(CarColor color) {
+    public void repaint(CarColor color) {
 
         this.color = color;
-        return color.getRed() + color.getGreen() + color.getBlue();
+
+        int price = color.getRgb()[0] + color.getRgb()[1] + color.getRgb()[2];
+        System.out.println(this.driver + "'s car has been repainted. Price : " + price + "€.");
     }
 
     public void setPassengers(Person[] passengers) {
